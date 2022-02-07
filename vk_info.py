@@ -1,6 +1,6 @@
 import sys
 import requests
-
+from db import insert_to_db
 sys.stdin.reconfigure(encoding='utf-8')
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -13,7 +13,7 @@ class Vk_users():
         self.token = token
         self.preferences_dict = preferences_dict
 
-    # Получение информации о пользователе, взаимодействующим с ботом
+    # Получение информации о пользователе, взаимодействующем с ботом
     def get_main_user_info(self):
         result = {}
         method = 'users.get'
@@ -119,5 +119,5 @@ class Vk_users():
                 user_dict[user_url] = photo_ids_list
                 user_dict[f"user_name{i}"] = user_name
                 i += 1
-
+        insert_to_db(user_dict)
         return user_dict

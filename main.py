@@ -1,12 +1,12 @@
-from time import sleep
 from unicodedata import name
 import vk_info
 import bot
 from vk_api.longpoll import VkEventType
+from settings import user_token, community_token
+from db import get_connection
 
 if __name__ == '__main__':
-    community_token = ''
-    user_token = ''
+    get_connection()
     preferences_dict = {}
     user = vk_info.Vk_users(user_token, preferences_dict)
     user_id = user.get_main_user_info()['id']
